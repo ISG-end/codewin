@@ -2,6 +2,18 @@ fetch('https://api.los-bio.ru/info/group/slide')
   .then(response => response.json())
   .then(data => {
     const slidesData = data.map(slide => JSON.parse(slide.value));
+
+slidesData.sort((a, b) => {
+  const getOrder = title => {
+    const t = title.toLowerCase();
+    if (t.includes('мбр')) return 0;
+    if (t.includes('лос')) return 1;
+    if (t.includes('емк')) return 2;
+    return 999;
+  };
+  return getOrder(a.title) - getOrder(b.title);
+});
+
     const slidesContainer = document.getElementById('slides-container');
     const dotsContainer = document.getElementById('slider-dots');
     let currentIndex = 0;
@@ -19,16 +31,34 @@ fetch('https://api.los-bio.ru/info/group/slide')
       dotsContainer.appendChild(dot);
     });
 
-    function createSlide(data) {
-      const slide = document.createElement('div');
-      slide.classList.add('slide');
-      slide.innerHTML = `
+  function createSlide(data) {
+  const slide = document.createElement('div');
+  slide.classList.add('slide');
+  
+  // Выбираем картинку по заголовку
+  let imageName = '';
+  if (data.title.includes('ЛОС')) {
+    imageName = 'los.webp';
+  } else if (data.title.includes('МБР')) {
+    imageName = 'mbr.webp';
+  } else if (data.title.includes('емкост')) {
+    imageName = 'emk.webp';
+  }
+
+  slide.innerHTML = `
+    <div class="slider_cont_wrapper">
+      <div class="slider_cont">
         <h2>${data.title}</h2>
         <p>${data.description}</p>
-        <a " target="_blank" style="color:#1078D7"><button >Подробнее<button></a>
-      `;
-      return slide;
-    }
+        <button class="slider__btn">Подробнее</button>
+      </div>
+      <img class="slider_image" src="image/${imageName}" alt="Изображение">
+    </div>
+  `;
+  return slide;
+}
+
+
 
     function changeSlide(newIndex) {
       if (newIndex === currentIndex) return;
