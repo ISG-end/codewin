@@ -1,3 +1,5 @@
+// Слайдер
+
 fetch('https://api.los-bio.ru/info/group/slide')
   .then(response => response.json())
   .then(data => {
@@ -58,8 +60,6 @@ slidesData.sort((a, b) => {
   return slide;
 }
 
-
-
     function changeSlide(newIndex) {
       if (newIndex === currentIndex) return;
 
@@ -94,3 +94,30 @@ slidesData.sort((a, b) => {
     }
   })
   .catch(error => console.error('Ошибка:', error));
+
+// Блок "Наши привелегии"
+
+ fetch('https://api.los-bio.ru/info/group/advantage')
+  .then(res => res.json())
+  .then(data => {
+    const parsed = data.map(item => JSON.parse(item.value));
+
+    const container = document.getElementById('advantage');
+    container.classList.add('advantages-section');
+
+    const grid = document.createElement('div');
+    grid.classList.add('advantages__grid');
+
+    // отрисуем только 4 карточки
+    parsed.slice(0, 4).forEach(card => {
+      const div = document.createElement('div');
+      div.classList.add('advantage-card');
+      div.innerHTML = `
+        <h3>${card.title}</h3>
+        <p>${card.description}</p>
+      `;
+      grid.appendChild(div);
+    });
+
+    container.appendChild(grid);
+  });
