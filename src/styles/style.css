@@ -299,3 +299,83 @@
   font-size: 16px;
   line-height: 1.4;
 }
+
+/* Футер */
+
+footer {
+  margin: 100px 60px;
+}
+
+.footer__list-menu {
+  display: flex;
+  flex-direction: row;
+  gap: 120px;
+}
+
+.footer__list-logo {
+  width: 240px;
+  height: 60px;
+  gap: 30px;
+}
+
+.footer__logo-text {
+  font-size: 13px;
+  line-height: 141%;
+  font-weight: 600;
+}
+
+.footer__list-logo {
+  display: flex;
+  flex-direction: column;
+  color: #FFFFFF;
+}
+
+.footer__list-company {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer__list-company a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.company-title {
+  font-weight: bold;
+  font-size: 18px;
+  color: #FFFFFF;
+}
+
+.footer__list-catalog {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer__list-catalog a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.catalog-title {
+  font-weight: bold;
+  font-size: 18px;
+  color: #FFFFFF;
+}
+
+.footer__list-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer__list-contacts a {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.contacts-title {
+  font-weight: bold;
+  font-size: 18px;
+}
