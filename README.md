@@ -17,7 +17,7 @@ HTML, CSS, JS
 
 fetch для загрузки данных
 
-Flexbox, Grid
+Flexbox
 
 ▶️ Как запустить
 Клонировать:
